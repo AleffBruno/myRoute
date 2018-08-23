@@ -1,6 +1,9 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 //import Routes from './routes/Routes';
 import {Routes} from './routes/Routes';
+import "reflect-metadata";
+import {createConnection} from "typeorm";
 
 
 class App {
@@ -9,8 +12,22 @@ class App {
 
     constructor () {
         this.app = express.default();
+        this.config();
         //this.app.use(this.allRoutes);
         this.allRoutes.routes(this.app);
+        this.startConnectionTypeOrm();
+    }
+
+    private config() : void {
+        this.app.use(bodyParser.json());
+
+        this.app.use(bodyParser.urlencoded({extended:false}));
+    }
+
+    async startConnectionTypeOrm() {
+        //config come from 'ormconfig.json'
+        // WARNING > on key "entities" DON'T use '/'(slash) when start to write the path
+        await createConnection();
     }
 }
 

@@ -1,12 +1,16 @@
-import { promises } from "fs";
 
+import { getManager , EntitySchema } from "typeorm";
+import { IRepository } from '../Interfaces/IRepository';
 
-
+import { User } from '../models/User';
 
 export default class Repository<T> implements IRepository<T> {
 
     save(entity: T): T {
         console.log("Repository father save");
+        //se der ruim, volta pra linha debaixo
+        getManager().getRepository(User).save(entity);
+        //return await getManager().getRepository(T).save(entity);
         return entity;
     }    
 

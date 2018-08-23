@@ -6,7 +6,7 @@
 
 
 
-interface IRepository<T> {
+export interface IRepository<T> {
     save(entity: T) :T;
     getAll() : Array<T>;
     update(identifier: any,entity :T): T;
