@@ -1,17 +1,23 @@
 
-import { getManager , EntitySchema } from "typeorm";
+import { getManager, getRepository ,EntitySchema ,getConnection } from "typeorm";
 import { IRepository } from '../Interfaces/IRepository';
+
 
 import { User } from '../models/User';
 
 export default class Repository<T> implements IRepository<T> {
 
-    save(entity: T): T {
+    async save(entity: T): Promise<T> {
         console.log("Repository father save");
-        //se der ruim, volta pra linha debaixo
-        getManager().getRepository(User).save(entity);
-        //return await getManager().getRepository(T).save(entity);
-        return entity;
+
+        //return await getManager().save(entity);
+        
+        return await getConnection().manager.save(entity);
+
+        // //se der ruim, volta pra linha debaixo
+        // getManager().getRepository(Repository).save(entity);
+        // //return await getManager().getRepository(T).save(entity);
+        // return entity;
     }    
 
     getAll(): Array<T> {

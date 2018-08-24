@@ -7,7 +7,7 @@
 
 
 export interface IRepository<T> {
-    save(entity: T) :T;
+    save(entity: T) : Promise<T>;
     getAll() : Array<T>;
     update(identifier: any,entity :T): T;
     delete(identifier: any): void;

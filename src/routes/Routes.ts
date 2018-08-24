@@ -18,7 +18,9 @@ export class Routes {
             let userRepo = new UserRepository();
 
             let newUser = new User();
-            newUser = req.body;
+            newUser.name = req.body.name;
+            newUser.email = req.body.email;
+            console.log(newUser);
             
             userRepo.save(newUser);
             res.send("acessou post e possivelmente salvou o user");
