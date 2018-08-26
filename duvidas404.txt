@@ -1,7 +1,7 @@
 nao foi usado try/catch nas controllers para o middleware de erro pegar tudo no final,
 isso é uma boa pratica?
 
-deve-se criar uma controller PAI tb, e extender para todas as outras controllers,
+deve-se criar uma controller PAI tb?, e extender para todas as outras controllers,
 igualmente feito no repositorio?
 
 o typeorm ja implementa o padrao repositorio, porem eu nao estou usando ele, fiz o meu proprio
@@ -18,4 +18,31 @@ retornar
 minhas respostas das controllers seguem um padrao, devo criar uma classe que implementa uma
 interface de "resposta padrao" ? ( exemplo : toda resposta tem 'status','messagem','msgextra'),
 qual a melhor forma de responder?
+
+estou usando o JWT, fiz uma pasta serviços ( que tb poderia ser a common/utils/helpers tanto faz)
+é uma boa pratica criar um serviço para autenticar/criptografar/descriptografar meus tokens?
+tb nao foi criado uma classe, pois a complexidade iria aumentar
+
+qual a melhor forma de fazer um arquivo de configuração?
+
+como descobrir qual tipo de objeto é uma variavel que eu nao sei?
+        jwt.verify(token,secretKey,function(error:any,decoded:any) << coloquei any
+
+posso misturar funções com atributos dentro de uma model? exemplo, model user tem id,name,lastname,email,
+posso colocar metodos como getFullName, getNameAndEmail dentro da model ou devo criar outra classe
+para por esses metodos relacionados ao user?
+
+pouco a pouco o projeto esta ficando com um forte acoplamento com o express, percebi isso quando
+fui fazer o metodo authenticate em UserRepository, que tive que importar o "Request" do express,
+se algum dia eu nao quiser mais usar o express, como que faz?
+
+percebi que no metodo authenticate em UserRepository, no codigo eu nao sei oque vai vir no Request,
+porem eu sei "na vida real" oque vai vir, que é um email e um password, uma boa organização para isso
+seria criar uma interface ( IParamsToAuthenticate ) que tem email e password? e se for isso,
+nao iria gerar complexidade extra no codigo?
+
+usei um "if" no metodo authenticate em UserController, eu nao poderia ter usado ele no Repositorio?
+ou isso estaria violando o repositorio???
+
+
 

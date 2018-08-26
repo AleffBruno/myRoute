@@ -1,8 +1,8 @@
 import {UserRepository} from '../repositories/UserRepository';
 import {Request,Response} from 'express';
 import {User} from '../models/User';
-
 import {getCustomRepository} from "typeorm";
+import {generateToken,decodeToken,authorize} from '../services/authService';
 
 export class UserController {
     //inventei agora, talvez fosse melhor por no construtor
@@ -14,6 +14,7 @@ export class UserController {
         let newUser = new User();
         newUser.name = req.body.name;
         newUser.email = req.body.email;
+        newUser.password = req.body.password;
 
         let savedUser = await userRepo.save(newUser);
         res.send({
@@ -24,6 +25,10 @@ export class UserController {
 
     async getAll(req: Request,res: Response) {
         let userRepo = getCustomRepository(UserRepository); 
+
+        var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization ;
+        let decodedToken = await decodeToken(token);
+        console.log(decodedToken);
 
         let allUsers = await userRepo.find({});
         res.send({
@@ -69,4 +74,33 @@ export class UserController {
     }
 
 
+    async authenticate(req: Request,res: Response) {
+        let userRepo = getCustomRepository(UserRepository); 
+
+        let data = {
+            email: req.body.email,
+            password: req.body.password
+        }
+
+        let user = await userRepo.authenticate(data);
+
+        if(!user) {
+            res.status(500).send({
+                message: "usuario ou senha errados"
+            });
+            return;
+        }
+
+        const generatedToken = await generateToken({
+            id: user.id,
+            email: user.email
+        });
+
+        res.send({
+            token: generatedToken,
+            user : user
+        })
+
+
+    }
 }

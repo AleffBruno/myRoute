@@ -2,6 +2,7 @@
 
 import {EntityRepository, Repository} from "typeorm";
 import { User } from '../models/User';
+import { Request } from 'express';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -10,5 +11,15 @@ export class UserRepository extends Repository<User> {
         let userToUpdate = await this.findOne(id);
         userToUpdate = reqBody;
         return await this.save(userToUpdate);
+    }
+
+    async authenticate(data: any) {
+        let user = this.findOne({
+            where:{ 
+                email:data.email, 
+                password:data.password
+            }
+        });
+        return user;
     }
 }

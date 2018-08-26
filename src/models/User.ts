@@ -20,6 +20,9 @@ export class User implements IUser {
     name!: string;
 
     @Column()
+    password!: string;
+
+    @Column()
     email!: string;
 
     fullName(): string {

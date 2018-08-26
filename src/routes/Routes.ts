@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { User } from '../models/User';
 import { UserRepository } from '../repositories/UserRepository';
 import { UserController } from '../controllers/UserController';
+import { authorize } from '../services/authService';
 
 export class Routes {
 
@@ -18,13 +19,18 @@ export class Routes {
 
         app.route('/user')
         .post(this.userController.save)
-        .get(this.userController.getAll);
+        .get(authorize,this.userController.getAll);
+
+        //app.get('/userall',authorize,this.userController.getAll);
 
 
         app.route('/user/:id')
-        .get(this.userController.getOne)
-        .put(this.userController.update)
-        .delete(this.userController.delete)
+        .get(authorize,this.userController.getOne)
+        .put(authorize,this.userController.update)
+        .delete(authorize,this.userController.delete);
+
+        app.route('/user/authenticate')
+        .post(this.userController.authenticate);
     }
 
 }
