@@ -1,6 +1,5 @@
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { ENGINE_METHOD_PKEY_ASN1_METHS } from 'constants';
 
 const secretKey= "aaa";
 
@@ -28,6 +27,7 @@ export async function authorize(req: Request,res: Response,next: NextFunction) {
                     message: "Invalid token"
                 });
             } else {
+                req.body.tokeninfo = decoded;
                 next();
             }
         });
