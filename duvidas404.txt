@@ -1,0 +1,21 @@
+nao foi usado try/catch nas controllers para o middleware de erro pegar tudo no final,
+isso é uma boa pratica?
+
+deve-se criar uma controller PAI tb, e extender para todas as outras controllers,
+igualmente feito no repositorio?
+
+o typeorm ja implementa o padrao repositorio, porem eu nao estou usando ele, fiz o meu proprio
+repositorioPadrao, devo extender o repositorio do typeorm no meu repositorioPadrao
+ou nem preciso fazer o meu repositorioPadrao e ja extemder os subRepositorios do proprio
+repositorio do typeorm?
+
+a minha InterfaceRepository esta sendo implementada emcima do typeOrm, por exemplo
+no metodo save da interface, ele esta retornando uma Promise em vez de retornar o objeto
+isso porque o orm retorna uma Promise ao executar o metodo salvar, isso esta OK?
+minha interface esta sendo influenciada pelo typeorm, ele quem dita oque a interface deve
+retornar
+
+minhas respostas das controllers seguem um padrao, devo criar uma classe que implementa uma
+interface de "resposta padrao" ? ( exemplo : toda resposta tem 'status','messagem','msgextra'),
+qual a melhor forma de responder?
+

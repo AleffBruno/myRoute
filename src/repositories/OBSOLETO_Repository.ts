@@ -20,11 +20,11 @@ export default class Repository<T> implements IRepository<T> {
         // return entity;
     }    
 
-    getAll(): Array<T> {
-        //throw new Error("Method not implemented.");
-        console.log("Repository father getAll");
-        let arr : Array<T> = [];
-        return arr;
+    getAll(): Promise<Array<T>> {
+        throw new Error("Method not implemented.");
+        // console.log("Repository father getAll");
+        // let arr : Promise<Array<T>> = [];
+        // return arr;
     }
 
     update(identifier: any, entity: T): T {

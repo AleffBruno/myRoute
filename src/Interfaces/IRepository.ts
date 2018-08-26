@@ -3,12 +3,9 @@
 
 
 
-
-
-
 export interface IRepository<T> {
     save(entity: T) : Promise<T>;
-    getAll() : Array<T>;
+    getAll() : Promise<Array<T>>;
     update(identifier: any,entity :T): T;
     delete(identifier: any): void;
 }

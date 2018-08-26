@@ -1,11 +1,13 @@
 import * as express from 'express';
-import {Router} from 'express';
+import { Router } from 'express';
 import { User } from '../models/User';
 import { UserRepository } from '../repositories/UserRepository';
+import { UserController } from '../controllers/UserController';
 
 export class Routes {
 
-    public Routes : Router = express.Router();
+    //public Routes : Router = express.Router();
+    public userController : UserController = new UserController(); 
     
     public routes(app : express.Application) : void {
 
@@ -14,18 +16,15 @@ export class Routes {
         //     res.send("acessou get");
         // })
 
-        app.route('/photo').post(function(req,res){
-            let userRepo = new UserRepository();
+        app.route('/user')
+        .post(this.userController.save)
+        .get(this.userController.getAll);
 
-            let newUser = new User();
-            newUser.name = req.body.name;
-            newUser.email = req.body.email;
-            console.log(newUser);
-            
-            userRepo.save(newUser);
-            res.send("acessou post e possivelmente salvou o user");
-        })
 
+        app.route('/user/:id')
+        .get(this.userController.getOne)
+        .put(this.userController.update)
+        .delete(this.userController.delete)
     }
 
 }
