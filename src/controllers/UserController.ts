@@ -3,6 +3,8 @@ import {Request,Response} from 'express';
 import {User} from '../models/User';
 import {getCustomRepository} from "typeorm";
 import {generateToken,decodeToken,authorize} from '../services/authService';
+import {validate} from "class-validator";
+
 
 export class UserController {
     //inventei agora, talvez fosse melhor por no construtor
@@ -16,10 +18,25 @@ export class UserController {
         newUser.email = req.body.email;
         newUser.password = req.body.password;
 
+        //validar aqui esta paya d+, fazer um listener/subiscriber para
+        //rodar uma validação sempre que for dar um pre-save nessa entity
+        //EDIT1: consegui nao, nao consegui passar a entity para o @BeforeInsert na model
+        console.log(newUser);
+        const errors = await validate(newUser);
+        if (errors.length > 0) {
+            //throw new Error(`Validation failed!`); 
+            res.send(errors);
+            return;
+        }
+
         let savedUser = await userRepo.save(newUser);
+
+        const generatedToken = await generateToken(savedUser);
+
         res.send({
             message:"acessou post e possivelmente salvou o user",
-            user: savedUser
+            user: savedUser,
+            token: generatedToken
         });
     }
 
@@ -91,10 +108,11 @@ export class UserController {
             return;
         }
 
-        const generatedToken = await generateToken({
-            id: user.id,
-            email: user.email
-        });
+        // const generatedToken = await generateToken({
+        //     id: user.id,
+        //     email: user.email
+        // });
+        const generatedToken = await generateToken(user);
 
         res.send({
             token: generatedToken,

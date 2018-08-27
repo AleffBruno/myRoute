@@ -1,9 +1,15 @@
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import {User} from '../models/User';
 
 const secretKey= "aaa";
 
-export async function generateToken(data:any){
+export async function generateToken(user:User){
+    let data = {
+        id: user.id,
+        email: user.email
+    }
+
     return await jwt.sign(data,secretKey,{expiresIn:'1d'});
 }
 
