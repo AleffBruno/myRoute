@@ -5,6 +5,8 @@ import {getCustomRepository} from "typeorm";
 import {generateToken,decodeToken,authorize} from '../services/authService';
 import {validate} from "class-validator";
 
+import { check, validationResult  } from 'express-validator/check';
+
 
 export class UserController {
     //inventei agora, talvez fosse melhor por no construtor
@@ -12,6 +14,11 @@ export class UserController {
 
     async save(req: Request,res: Response) {
         let userRepo = getCustomRepository(UserRepository); 
+
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(422).json({ errors: errors.array() });
+        // }
 
         let newUser = new User();
         newUser.name = req.body.name;
@@ -21,13 +28,13 @@ export class UserController {
         //validar aqui esta paya d+, fazer um listener/subiscriber para
         //rodar uma validação sempre que for dar um pre-save nessa entity
         //EDIT1: consegui nao, nao consegui passar a entity para o @BeforeInsert na model
-        console.log(newUser);
-        const errors = await validate(newUser);
-        if (errors.length > 0) {
-            //throw new Error(`Validation failed!`); 
-            res.send(errors);
-            return;
-        }
+        // console.log(newUser);
+        // const errors = await validate(newUser);
+        // if (errors.length > 0) {
+        //     //throw new Error(`Validation failed!`); 
+        //     res.send(errors);
+        //     return;
+        // }
 
         let savedUser = await userRepo.save(newUser);
 

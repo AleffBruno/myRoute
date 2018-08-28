@@ -5,6 +5,9 @@ import { UserRepository } from '../repositories/UserRepository';
 import { UserController } from '../controllers/UserController';
 import { authorize } from '../services/authService';
 
+import { check, validationResult  } from 'express-validator/check';
+
+
 export class Routes {
 
     //public Routes : Router = express.Router();
@@ -18,7 +21,10 @@ export class Routes {
         // })
 
         app.route('/user')
-        .post(this.userController.save)
+        .post(
+        User.rules(),
+        User.nex,
+        this.userController.save)
         .get(authorize,this.userController.getAll);
 
         //app.get('/userall',authorize,this.userController.getAll);

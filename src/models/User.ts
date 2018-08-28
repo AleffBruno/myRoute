@@ -9,6 +9,7 @@ import { IUser } from '../Interfaces/IUser';
 import {Entity, Column, PrimaryGeneratedColumn, BeforeInsert} from "typeorm";
 import {IsEmail, Min, Max} from "class-validator";
 
+import { check, validationResult  } from 'express-validator/check';
 
 
 @Entity()
@@ -35,6 +36,21 @@ export class User implements IUser {
 
     fullName(): string {
         return "My full name is: "+this.name;
+    }
+
+    static nex (req:any,res:any,next:any) {
+        //console.log(req.body.email);
+        //[check(req.body.email).isEmail(),check('password').isLength({ min: 5 })];
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+        next();
+    }
+
+    static rules() {
+        return [check('email').isEmail(),check('password').isLength({ min: 5 })];
     }
     
     // @BeforeInsert()

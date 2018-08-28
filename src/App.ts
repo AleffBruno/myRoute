@@ -5,7 +5,6 @@ import {Routes} from './routes/Routes';
 import "reflect-metadata";
 import {createConnection} from "typeorm";
 
-
 class App {
     public app : express.Application;
     public allRoutes : Routes = new Routes();
