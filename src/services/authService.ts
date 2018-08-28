@@ -33,7 +33,8 @@ export async function authorize(req: Request,res: Response,next: NextFunction) {
                     message: "Invalid token"
                 });
             } else {
-                req.body.tokeninfo = decoded;
+                //nao posso retornar isso pq mostra as info confidenciais do user em cada request
+                //req.body.tokeninfo = decoded;
                 next();
             }
         });

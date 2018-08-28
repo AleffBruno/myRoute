@@ -22,8 +22,8 @@ export class Routes {
 
         app.route('/user')
         .post(
-        User.rules(),
-        User.nex,
+        User.returnRules(),
+        User.validateRules,
         this.userController.save)
         .get(authorize,this.userController.getAll);
 
