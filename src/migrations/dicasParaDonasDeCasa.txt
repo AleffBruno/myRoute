@@ -1,0 +1,5 @@
+se algum dia o compilador reclamar de "IMPORT" quando for rodar algum comando do
+typeorm, use isso...
+
+ts-node node_modules\typeorm\cli.js [SEU_COMANDO]
+(e.g: ts-node node_modules\typeorm\cli.js migration:generate -n UseRefactoring)

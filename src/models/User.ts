@@ -35,6 +35,9 @@ export class User implements IUser {
     //@IsEmail()
     email!: string;
 
+    @Column()
+    cellphone!: string;
+
     fullName(): string {
         return "My full name is: "+this.name;
     }
