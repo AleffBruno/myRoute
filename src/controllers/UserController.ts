@@ -46,10 +46,12 @@ export class UserController {
         let userRepo = getCustomRepository(UserRepository); 
 
         let user = await userRepo.findOne(req.params.id);
-
+''
         // isso seria o tratamento apropiado?
         if(!user)
-            next(new Error('Passe um ID valido'));
+             next(new Error('Passe um ID valido'));
+            //throw new Error('Passe um ID valido'); // isso daqui deixa resposta inifinita para user
+
 
         res.send({
             message:"acessou getOne user",
