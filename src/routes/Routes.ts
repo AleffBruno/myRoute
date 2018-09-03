@@ -20,6 +20,11 @@ export class Routes {
         //     res.send("acessou get");
         // })
 
+        //testando tratamento de erros
+        app.get('/err',function(req,res,next){
+            next(new Error('ROTA ESTA JOGANDO UM NEW ERROR'));
+        });
+
         app.route('/user')
         .post(
         User.returnRules(),

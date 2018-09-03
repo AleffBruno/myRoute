@@ -44,5 +44,9 @@ nao iria gerar complexidade extra no codigo?
 usei um "if" no metodo authenticate em UserController, eu nao poderia ter usado ele no Repositorio?
 ou isso estaria violando o repositorio???
 
+verificar o comportamento do middlewareDeErro no getOne passando um id que nao existe.
+
+eu ainda assim tenho que jogar "throw new Error"
+
 
 

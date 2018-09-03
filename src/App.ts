@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import {Routes} from './routes/Routes';
 import "reflect-metadata";
 import {createConnection} from "typeorm";
+import customErrorHandler from './services/ErrorHandler';
 
 class App {
     public app : express.Application;
@@ -15,6 +16,7 @@ class App {
         //this.app.use(this.allRoutes);
         this.allRoutes.routes(this.app);
         this.startConnectionTypeOrm();
+        this.app.use(customErrorHandler);
     }
 
     private config() : void {

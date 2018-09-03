@@ -1,5 +1,5 @@
 import {UserRepository} from '../repositories/UserRepository';
-import {Request,Response} from 'express';
+import {Request,Response,NextFunction} from 'express';
 import {User} from '../models/User';
 import {getCustomRepository} from "typeorm";
 import {generateToken,decodeToken,authorize} from '../services/authService';
@@ -8,7 +8,7 @@ import {validate} from "class-validator";
 import { check, validationResult  } from 'express-validator/check';
 
 
-export class UserController {
+export class UserController {   
     async save(req: Request,res: Response) {
         let userRepo = getCustomRepository(UserRepository); 
 
@@ -42,10 +42,14 @@ export class UserController {
         })
     }
 
-    async getOne(req: Request,res: Response) {
+    async getOne(req: Request,res: Response, next: NextFunction) {
         let userRepo = getCustomRepository(UserRepository); 
 
         let user = await userRepo.findOne(req.params.id);
+
+        // isso seria o tratamento apropiado?
+        if(!user)
+            next(new Error('Passe um ID valido'));
 
         res.send({
             message:"acessou getOne user",
