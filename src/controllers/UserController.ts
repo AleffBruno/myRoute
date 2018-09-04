@@ -46,13 +46,15 @@ export class UserController {
         let userRepo = getCustomRepository(UserRepository); 
 
         let user = await userRepo.findOne(req.params.id);
-''
+
         // isso seria o tratamento apropiado?
-        if(!user)
-             next(new Error('Passe um ID valido'));
+        if(!user) {
+            next(new Error('Passe um ID valido'));
             //throw new Error('Passe um ID valido'); // isso daqui deixa resposta inifinita para user
+        }
 
-
+        // se der um erro acima, isso daqui ainda vai ser executado e vai dar outro erro(console)
+        // dizendo que nao pode enviar headers dps da resposta da request
         res.send({
             message:"acessou getOne user",
             user: user

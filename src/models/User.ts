@@ -51,21 +51,32 @@ export class User implements IUser {
     }
 
     static returnRules() {
+        //tentar passar depois um parametro que nao pode, por exemplo accessLevel
         return [
             check('email').isEmail()
                 .withMessage('Coloque um e-mail valido')
-                .custom(new User().customValidationUniqueEmail()),
+                //.custom(new User().customValidationUniqueEmail()),
+                .custom(new User().uniqueEmail),
             check('password').isLength({ min: 5 })
         ];
     }
 
-    customValidationUniqueEmail = () => {
-        return async function(email:any){
-            return await getRepository(User).findOne({email: email}).then(user => {
-                if(user) {
-                    return Promise.reject('e-mail ja existe');
-                }
-            });
+    // se eu deixar como atributo, isso vai ser retornado quando esse user for requisitado
+    // por exeplo, no getOne ou getAll
+    // customValidationUniqueEmail = () => {
+    //     return async function(email:string){
+    //         return await getRepository(User).findOne({email: email}).then(user => {
+    //             if(user) {
+    //                 return Promise.reject('e-mail ja existe');
+    //             }
+    //         });
+    //     }
+    // }
+
+    async uniqueEmail(email:string){
+        let user = await getRepository(User).findOne({email: email});
+        if(user){
+            return Promise.reject('e-mail ja existe');
         }
     }
 
