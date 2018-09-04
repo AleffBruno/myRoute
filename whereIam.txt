@@ -1,0 +1,9 @@
+googling : testes no node
+
+http://www.matera.com/blog/post/testes-em-node-js
+
+https://medium.com/@hdeodato/teste-autom%C3%A1tico-de-api-rest-usando-com-node-js-mocha-chai-6aec4613d100
+
+http://www.luiztools.com.br/post/tdd-como-criar-unit-tests-em-node-js-com-tape/
+
+https://imasters.com.br/desenvolvimento/tdd-como-criar-unit-tests-em-node-js-com-tape
