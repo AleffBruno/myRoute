@@ -7,3 +7,5 @@ https://medium.com/@hdeodato/teste-autom%C3%A1tico-de-api-rest-usando-com-node-j
 http://www.luiztools.com.br/post/tdd-como-criar-unit-tests-em-node-js-com-tape/
 
 https://imasters.com.br/desenvolvimento/tdd-como-criar-unit-tests-em-node-js-com-tape
+
+https://medium.com/@oieduardorabelo/node-js-e-typescript-o-como-e-com-testes-7affce2c02a8
