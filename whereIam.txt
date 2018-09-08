@@ -9,3 +9,5 @@ http://www.luiztools.com.br/post/tdd-como-criar-unit-tests-em-node-js-com-tape/
 https://imasters.com.br/desenvolvimento/tdd-como-criar-unit-tests-em-node-js-com-tape
 
 https://medium.com/@oieduardorabelo/node-js-e-typescript-o-como-e-com-testes-7affce2c02a8
+
+http://www.riptutorial.com/typescript/example/29207/jest--ts-jest-
