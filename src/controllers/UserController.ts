@@ -2,10 +2,8 @@ import {UserRepository} from '../repositories/UserRepository';
 import {Request,Response,NextFunction} from 'express';
 import {User} from '../models/User';
 import {getCustomRepository} from "typeorm";
-import {generateToken,decodeToken,authorize} from '../services/authService';
-import {validate} from "class-validator";
+import {generateToken,decodeToken} from '../services/authService';
 
-import { check, validationResult  } from 'express-validator/check';
 
 
 export class UserController {   

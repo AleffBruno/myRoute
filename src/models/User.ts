@@ -4,9 +4,9 @@
 //     name!: string;
 // }
 
-import { IUser } from '../Interfaces/IUser';
-import {Entity, Column, PrimaryGeneratedColumn, BeforeInsert} from "typeorm";
-import {IsEmail, Min, Max} from "class-validator";
+//import { IUser } from '../Interfaces/IUser';
+import {IUser} from '../Interfaces/IUser';
+import {Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import { check, validationResult  } from 'express-validator/check';
 import { getRepository } from "typeorm";
 
@@ -73,11 +73,16 @@ export class User implements IUser {
     //     }
     // }
 
-    async uniqueEmail(email:string){
-        let user = await getRepository(User).findOne({email: email});
-        if(user){
-            return Promise.reject('e-mail ja existe');
+    async uniqueEmail(email:string) {
+        try {
+            let user = await getRepository(User).findOne({email: email});
+            if(user){
+                return Promise.reject('e-mail ja existe');
+            }
+        } catch ( err ){
+            console.log("função uniqueEmail falha no request")
         }
+        
     }
 
     

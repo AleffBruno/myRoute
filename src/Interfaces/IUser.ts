@@ -1,11 +1,5 @@
-
-
-
-
-
-
 export interface IUser {
     name:string;
-    email:string
+    email:string;
     fullName(): string;
 }

@@ -1,11 +1,7 @@
 import * as express from 'express';
-import { Router } from 'express';
 import { User } from '../models/User';
-import { UserRepository } from '../repositories/UserRepository';
 import { UserController } from '../controllers/UserController';
 import { authorize } from '../services/authService';
-
-import { check, validationResult  } from 'express-validator/check';
 
 
 export class Routes {
@@ -21,9 +17,11 @@ export class Routes {
         // })
 
         //testando tratamento de erros
-        app.get('/err',function(req,res,next){
-            next(new Error('ROTA ESTA JOGANDO UM NEW ERROR'));
-        });
+        //COMENTEI AQUI PQ QUANDO USA "npm run prod" ISSO DAQUI DA ERRO
+        // app.get('/err',function(req,res,next){
+        //     res.send("hi");
+        //     //next(new Error('ROTA ESTA JOGANDO UM NEW ERROR'));
+        // });
 
         app.route('/user')
         .post(

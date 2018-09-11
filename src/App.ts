@@ -28,7 +28,13 @@ class App {
     async startConnectionTypeOrm() {
         //config come from 'ormconfig.json'
         // WARNING > on key "entities" DON'T use '/'(slash) when start to write the path
-        await createConnection();
+        try {
+            await createConnection()
+        } catch (err) {
+            //uma boa seria chamar meu middleware de erro aqui
+            console.log("====>> SE O TESTE RODOU, IGNORE ESSE ERRO ABAIXO <<====");
+            console.log(err);
+        }
     }
 }
 
