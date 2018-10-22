@@ -1,0 +1,6 @@
+em caso de duvidas sobre o arquivo package.json, a maioria das configs foi retirada dos 
+tutoriais que estao em "whereIam.txt"
+
+sobre o erro "unexpected token import", basta mudar em ormconfig.json no chave entities o final
+das entities para ".js" (ex: se estiver src/models/*.ts" coloque src/models/*.js")
+referencia : https://stackoverflow.com/questions/50361948/syntaxerror-unexpected-token-import-typeorm-entity

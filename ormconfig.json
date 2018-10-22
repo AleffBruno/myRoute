@@ -6,7 +6,7 @@
     "password": "",
     "database": "tsnodetutorial",
     "entities": [
-        "src/models/*.ts"
+        "src/models/*.js"
     ],
     "migrations": [
         "src/migrations/*.ts"
