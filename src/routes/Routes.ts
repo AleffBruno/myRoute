@@ -1,5 +1,6 @@
 import * as express from 'express';
-import { User } from '../models/User';
+//import { User } from '../beans/User';
+import { UserModel as User } from '../models/UserModel';;
 import { UserController } from '../controllers/UserController';
 import { authorize } from '../services/authService';
 
@@ -24,10 +25,7 @@ export class Routes {
         // });
 
         app.route('/user')
-        .post(
-        User.returnRules(),
-        User.validateRules,
-        this.userController.save)
+        .post(User.returnRules(),User.validateRules,this.userController.save)
         .get(authorize,this.userController.getAll);
 
         //app.get('/userall',authorize,this.userController.getAll);

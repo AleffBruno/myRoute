@@ -1,6 +1,7 @@
 import {UserRepository} from '../repositories/UserRepository';
 import {Request,Response,NextFunction} from 'express';
-import {User} from '../models/User';
+//import {User} from '../models/User';
+import {User} from '../beans/User';
 import {getCustomRepository} from "typeorm";
 import {generateToken,decodeToken} from '../services/authService';
 

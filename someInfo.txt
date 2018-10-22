@@ -2,5 +2,9 @@ em caso de duvidas sobre o arquivo package.json, a maioria das configs foi retir
 tutoriais que estao em "whereIam.txt"
 
 sobre o erro "unexpected token import", basta mudar em ormconfig.json no chave entities o final
-das entities para ".js" (ex: se estiver src/models/*.ts" coloque src/models/*.js")
+das entities para ".js" (ex: se estiver src/models/*.ts" coloque CAMINHO/models/*.js"), atente-se
+tb se o path esta correto para as novas entities.js
 referencia : https://stackoverflow.com/questions/50361948/syntaxerror-unexpected-token-import-typeorm-entity
+
+sobre o erro "EntityMetadataNotFound: No metadata for "[ALGO]" was found.", no arquivo ormconfig.json
+a chave "entities" esta com a referencia errada para as entidades
