@@ -5,8 +5,7 @@ import {getCustomRepository} from "typeorm";
 import {generateToken,decodeToken} from '../services/authService';
 
 
-
-export class UserController {   
+export class UserController {
     async save(req: Request,res: Response) {
         let userRepo = getCustomRepository(UserRepository); 
 
