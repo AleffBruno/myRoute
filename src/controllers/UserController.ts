@@ -85,7 +85,7 @@ export class UserController {
     }
 
 
-    async authenticate(req: Request,res: Response) {
+    async login(req: Request,res: Response) {
         let userRepo = getCustomRepository(UserRepository); 
 
         let data = {

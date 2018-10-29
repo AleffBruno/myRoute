@@ -33,13 +33,6 @@ export class User implements IUser {
     //@IsEmail()
     email!: string;
 
-    @Column()
-    cellphone!: string;
-
-    fullName(): string {
-        return "My full name is: "+this.name;
-    }
-
     //MOVIDO PARA MODEL
     // static validateRules (req:any,res:any,next:any) {
     //     const errors = validationResult(req);

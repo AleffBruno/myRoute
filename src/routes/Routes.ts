@@ -36,8 +36,8 @@ export class Routes {
         .put(authorize,this.userController.update)
         .delete(authorize,this.userController.delete);
 
-        app.route('/user/authenticate')
-        .post(this.userController.authenticate);
+        app.route('/user/login')
+        .post(this.userController.login);
     }
 
 }
