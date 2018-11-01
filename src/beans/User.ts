@@ -6,9 +6,9 @@
 
 //import { IUser } from '../Interfaces/IUser';
 import {IUser} from '../Interfaces/IUser';
-import {Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-//import { check, validationResult  } from 'express-validator/check';
-//import { getRepository } from "typeorm";
+import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, ManyToOne } from "typeorm";
+import {Route} from './Route';
+import { Company } from './Company';
 
 
 @Entity()
@@ -17,21 +17,24 @@ export class User implements IUser {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({
-        length: 100
-    })
-    //@Min(0)
-    //@Max(100)
+    @Column()
     name!: string;
 
     @Column()
-    //@Min(0)
-    //@Max(100)
     password!: string;
 
     @Column()
-    //@IsEmail()
     email!: string;
+
+    @OneToMany(_type => Route, route => route.user_id)
+    routes!: Route[];
+
+    @CreateDateColumn({type: "timestamp"})
+    createdAt!: Date;
+
+    @ManyToOne(_type => Company, company => company.userOwner_id)
+    company_id!: Company;
+    
 
     //MOVIDO PARA MODEL
     // static validateRules (req:any,res:any,next:any) {

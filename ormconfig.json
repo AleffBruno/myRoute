@@ -4,15 +4,15 @@
     "port": 3306,
     "username": "root",
     "password": "",
-    "database": "tsnodetutorial",
+    "database": "myroute",
     "entities": [
-        "dist/beans/*.js"
+        "src/beans/*.ts"
     ],
     "migrations": [
         "src/migrations/*.ts"
     ],
     "cli": { "migrationsDir": "src/migrations" },
-    "synchronize": true,
+    "synchronize": false,
     "logging": false
 }
 
