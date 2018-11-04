@@ -26,14 +26,17 @@ export class User implements IUser {
     @Column()
     email!: string;
 
-    @OneToMany(_type => Route, route => route.user_id)
-    routes!: Route[];
-
     @CreateDateColumn({type: "timestamp"})
     createdAt!: Date;
 
-    @ManyToOne(_type => Company, company => company.userOwner_id)
-    company_id!: Company;
+    @OneToMany(_type => Route, route => route.user)
+    routes!: Route[];
+
+    @ManyToOne(_type => Company, company => company.users)
+    company!: Company;
+    /* @OneToOne(_type => Company)
+    @JoinColumn()
+    company_id!: Company; */
     
 
     //MOVIDO PARA MODEL

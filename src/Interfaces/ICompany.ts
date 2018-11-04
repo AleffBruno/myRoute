@@ -6,5 +6,5 @@ export interface ICompany {
     phone:string;
     email:string;
     createdAt:Date;
-    userOwner_id:User;
+    //userOwner_id:User[];
 }

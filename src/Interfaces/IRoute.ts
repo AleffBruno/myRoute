@@ -9,6 +9,6 @@ export interface IRoute {
     arrivalTime:Date;
     distance:number;
     createdAt:Date;
-    company_id:Company;
-    user_id:User;
+    company:Company;
+    user:User;
 }

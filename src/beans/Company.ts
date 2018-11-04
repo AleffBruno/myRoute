@@ -1,7 +1,8 @@
 
 import {ICompany} from '../Interfaces/ICompany';
-import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from "typeorm";
+import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from "typeorm";
 import {User} from './User';
+import { Route } from './Route';
 
 @Entity()
 export class Company implements ICompany {
@@ -15,15 +16,24 @@ export class Company implements ICompany {
     @Column()
     cnpj!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     phone!: string;
 
-    @Column()
-    email!: Date;
+    @Column({
+        nullable: true
+    })
+    email!: string;
 
     @CreateDateColumn({type: "timestamp"})
     createdAt!: Date;
 
-    @ManyToOne(_type => User, user => user.company_id)
-    userOwner_id!: User;
+    /* @ManyToOne(_type => User, user => user.company_id)
+    userOwner_id!: User; */
+    @OneToMany(_type => User, user => user.company)
+    users!: User[];
+
+    @OneToMany(_type => Route, route => route.company)
+    routes!: Route[];
 }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "junk": "ts-node src/junk/junk.ts",
     "test": "node_modules\\.bin\\jest --coverage",
     "tsc": "tsc",
     "start": "ts-node src/server.ts",
@@ -36,7 +37,7 @@
     "nodemon": "^1.18.4",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^7.0.1",
-    "typeorm": "^0.2.7",
+    "typeorm": "^0.2.8",
     "typescript": "^3.0.3"
   },
   "devDependencies": {

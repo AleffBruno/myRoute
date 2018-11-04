@@ -32,8 +32,8 @@ export class Route implements IRoute {
     createdAt!: Date;
 
     @ManyToOne(_type => Company, company => company.routes)
-    company_id!: Company;
+    company!: Company;
 
     @ManyToOne(_type => User, user => user.routes)
-    user_id!: User;
+    user!: User;
 }
