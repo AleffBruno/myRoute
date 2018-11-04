@@ -2,6 +2,8 @@ import {createConnection} from "typeorm";
 import {User} from '../beans/User';
 import { Company } from "../beans/Company";
 import { Route } from "../beans/Route";
+import { CustomRouteField } from "../beans/CustomRouteField";
+import { CustomRouteFieldValue } from "../beans/CustomRouteFieldValue";
 
 createConnection({
     type: "mysql",
@@ -55,6 +57,38 @@ createConnection({
     route2.company = company;
     await connection.manager.save(route2);
 
+    let customField = new CustomRouteField();
+    customField.customField = "idade";
+    customField.company = company;
+    await connection.manager.save(customField);
+
+    let customField2 = new CustomRouteField();
+    customField2.customField = "dia atual";
+    customField2.company = company;
+    await connection.manager.save(customField2);
+
+    let route3 = new Route();
+    route3.name = "viaj1";
+    route3.origin = "casa";
+    route3.destination = "centro";
+    route3.departureTime = new Date();
+    route3.arrivalTime = new Date();
+    route3.distance = 12;
+    route3.user = user2;
+    route3.company = company;
+    await connection.manager.save(route3);
+
+    let customFieldValue = new CustomRouteFieldValue();
+    customFieldValue.customRouteField = customField;
+    customFieldValue.route = route3;
+    customFieldValue.value = "25 anos";
+    await connection.manager.save(customFieldValue);
+
+    let customFieldValue2 = new CustomRouteFieldValue();
+    customFieldValue2.customRouteField = customField2;
+    customFieldValue2.route = route3;
+    customFieldValue2.value = "segunda-feira";
+    await connection.manager.save(customFieldValue2);
     
 
 }).catch(error => console.log(error));

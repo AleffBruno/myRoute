@@ -1,8 +1,10 @@
 
 import {IRoute} from '../Interfaces/IRoute';
-import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from "typeorm";
+import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, OneToMany } from "typeorm";
 import {User} from './User';
 import { Company } from './Company';
+import { Coordinate } from './Coordinate';
+import { CustomRouteFieldValue } from './CustomRouteFieldValue';
 
 @Entity()
 export class Route implements IRoute {
@@ -36,4 +38,10 @@ export class Route implements IRoute {
 
     @ManyToOne(_type => User, user => user.routes)
     user!: User;
+
+    @OneToMany(_type => Coordinate, coordinate => coordinate.route)
+    coordinates!: Coordinate[];
+
+    @OneToMany(_type => CustomRouteFieldValue, customRouteFieldValue => customRouteFieldValue.route)
+    customRouteFieldValues!: CustomRouteFieldValue[];
 }

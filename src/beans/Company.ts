@@ -3,6 +3,7 @@ import {ICompany} from '../Interfaces/ICompany';
 import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from "typeorm";
 import {User} from './User';
 import { Route } from './Route';
+import { CustomRouteField } from './CustomRouteField';
 
 @Entity()
 export class Company implements ICompany {
@@ -36,4 +37,7 @@ export class Company implements ICompany {
 
     @OneToMany(_type => Route, route => route.company)
     routes!: Route[];
+
+    @OneToMany(_type => CustomRouteField, customRouteField => customRouteField.company)
+    customRouteField!: CustomRouteField[];
 }
