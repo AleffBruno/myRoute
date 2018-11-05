@@ -20,8 +20,13 @@ export class UserController {
         const generatedToken = await generateToken(savedUser);
 
         res.send({
-            message:"acessou post e possivelmente salvou o user",
-            user: savedUser,
+            message:true,
+            //message:"acessou post e possivelmente salvou o user",
+            //user: savedUser,
+            user: {
+                name:savedUser.name,
+                email:savedUser.email
+            },
             token: generatedToken
         });
     }
@@ -35,7 +40,8 @@ export class UserController {
 
         let allUsers = await userRepo.find({});
         res.send({
-            message:"acessou getAll user",
+            //message:"acessou getAll user",
+            message:true,
             users: allUsers
         })
     }
@@ -54,7 +60,8 @@ export class UserController {
         // se der um erro acima, isso daqui ainda vai ser executado e vai dar outro erro(console)
         // dizendo que nao pode enviar headers dps da resposta da request
         res.send({
-            message:"acessou getOne user",
+            //message:"acessou getOne user",
+            message:true,
             user: user
         })
     }
@@ -69,7 +76,8 @@ export class UserController {
         let userUpdated = await userRepo.findAndUpdate(userToUpdateId,userNewInfo);
 
         res.send({
-            message:"acessou update user",
+            //message:"acessou update user",
+            message:true,
             user: userUpdated
         })
     }
@@ -78,9 +86,10 @@ export class UserController {
         let userRepo = getCustomRepository(UserRepository); 
 
         userRepo.delete(req.params.id);
-
+        
         res.send({
-            message:"acessou delete user"
+            //message:"acessou delete user"
+            message:true
         })
     }
 
@@ -109,8 +118,9 @@ export class UserController {
         const generatedToken = await generateToken(user);
 
         res.send({
-            token: generatedToken,
-            user : user
+            message:true,
+            user : user,
+            token: generatedToken
         })
 
 
