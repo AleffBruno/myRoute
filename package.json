@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "junk": "ts-node src/junk/junk.ts",
+    "junk2": "ts-node src/junk/junk2.ts",
     "test": "node_modules\\.bin\\jest --coverage",
     "tsc": "tsc",
     "start": "ts-node src/server.ts",
@@ -27,6 +28,8 @@
   "license": "ISC",
   "dependencies": {
     "@std/esm": "^0.26.0",
+    "@types/bcrypt": "^3.0.0",
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "class-validator": "^0.9.1",
     "es6-shim": "^0.35.3",

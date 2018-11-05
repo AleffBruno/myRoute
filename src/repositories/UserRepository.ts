@@ -14,10 +14,15 @@ export class UserRepository extends Repository<User> {
     }
 
     async authenticate(data: any) {
+        // let user = this.findOne({
+        //     where:{ 
+        //         email:data.email, 
+        //         password:data.password
+        //     }
+        // });
         let user = this.findOne({
             where:{ 
-                email:data.email, 
-                password:data.password
+                email:data.email
             }
         });
         return user;

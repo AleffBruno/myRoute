@@ -4,6 +4,7 @@ import {Request,Response,NextFunction} from 'express';
 import {User} from '../beans/User';
 import {getCustomRepository} from "typeorm";
 import {generateToken,decodeToken} from '../services/authService';
+import * as bcrypt from 'bcrypt';
 
 
 export class UserController {
@@ -13,7 +14,8 @@ export class UserController {
         let newUser = new User();
         newUser.name = req.body.name;
         newUser.email = req.body.email;
-        newUser.password = req.body.password;
+        //newUser.password = req.body.password;
+        newUser.password = bcrypt.hashSync(req.body.password,10);
 
         let savedUser = await userRepo.save(newUser);
 
@@ -110,6 +112,13 @@ export class UserController {
             });
             return;
         }
+
+        if(!bcrypt.compareSync(req.body.password, user.password)) {
+            res.status(500).send({
+                message: "usuario ou senha errados"
+            });
+            return;
+        } 
 
         // const generatedToken = await generateToken({
         //     id: user.id,

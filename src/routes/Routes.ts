@@ -19,10 +19,10 @@ export class Routes {
 
         //testando tratamento de erros
         //COMENTEI AQUI PQ QUANDO USA "npm run prod" ISSO DAQUI DA ERRO
-        // app.get('/err',function(req,res,next){
-        //     res.send("hi");
-        //     //next(new Error('ROTA ESTA JOGANDO UM NEW ERROR'));
-        // });
+        app.get('/err',function(req,res,next){
+            res.send("hi");
+            //next(new Error('ROTA ESTA JOGANDO UM NEW ERROR'));
+        });
 
         app.route('/user')
         .post(User.returnRules(),User.validateRules,this.userController.save)
